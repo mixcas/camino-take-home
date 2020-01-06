@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { increaseStep } from 'actions/stepsActions'
+import { increaseStep, setFieldValue } from 'actions/stepsActions'
 import './Steps.css'
 
 import Stepper from 'components/steps/Stepper'
 import Step1 from 'components/steps/Step1'
 
-const Steps = ({currentStep, stepTitle, stepDescription,totalSteps, increaseStep}) => {
+const Steps = ({currentStep, stepTitle, stepDescription,totalSteps, increaseStep, formValues, setFieldValue}) => {
 
   const renderStep = () => {
     switch(currentStep) {
       case 1:
-        return <Step1 description={stepDescription} nextStep={increaseStep}/>
+        return <Step1 description={stepDescription} nextStep={increaseStep} setFieldValue={setFieldValue} formValues={formValues}/>
       default:
         break
     }
@@ -34,18 +34,20 @@ const Steps = ({currentStep, stepTitle, stepDescription,totalSteps, increaseStep
 
 const mapDispatchToProps = dispatch => {
   return {
-    increaseStep: () => dispatch(increaseStep())
+    increaseStep: () => dispatch(increaseStep()),
+    setFieldValue: (field,data) => dispatch(setFieldValue(field, data)),
   }
 }
 
 const mapStateToProps = ({ steps }) => {
-  const { currentStep, stepDescription, stepTitle, totalSteps} = steps
-  console.log(totalSteps)
+  const { currentStep, stepDescription, stepTitle, totalSteps, formValues, error } = steps
   return {
     currentStep,
     stepTitle,
     stepDescription,
     totalSteps,
+    formValues,
+    error,
   }
 }
 

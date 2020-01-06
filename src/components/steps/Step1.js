@@ -1,52 +1,4 @@
-import React, { useReducer } from 'react'
-
-// Error Initial state
-const errorInitialState = {
-  firstName: false,
-}
-
-// Initial state
-const initialState = {
-  formValues: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobilePhoneNumber: '',
-    ownBusiness: null,
-    businessName: '',
-    loanAmount: '',
-    nineMonthsBusiness: null,
-  },
-  error: errorInitialState,
-}
-
-
-const SET_FORM_VALUE = 'SET_FORM_VALUE'
-
-const formReducer = (state = initialState, action) => {
-  console.log(state)
-  switch (action.type) {
-    case SET_FORM_VALUE:
-      const { formValues } = state
-      return {
-        ...state,
-        formValues: {
-          ...formValues,
-          [action.field]: action.data,
-        },
-      }
-    default:
-      return state
-  }
-}
-
-const setFieldValue = (field, data) => {
-  return {
-    type: SET_FORM_VALUE,
-    field,
-    data,
-  }
-}
+import React from 'react'
 
 const loanPurposes = [
   'Expansion',
@@ -62,18 +14,11 @@ const loanPurposes = [
   'Other',
 ]
 
-const Step1 = ({ description, nextStep }) => {
+const Step1 = ({ description, nextStep, setFieldValue, formValues }) => {
   const onSubmit = e => {
     e.preventDefault()
     nextStep()
   }
-
-  const [formState, dispatch] = useReducer(
-    formReducer,  // Our Reducer
-    initialState,
-  )
-
-  const { formValues } = formState
 
   return (
     <>
@@ -84,7 +29,7 @@ const Step1 = ({ description, nextStep }) => {
           id='first-name'
           name='first-name'
           type='text'
-          onChange={ e => { dispatch(setFieldValue('firstName', e.target.value)) } }
+          onChange={ e => setFieldValue('firstName', e.target.value) }
           value={formValues.firstName}
         />
       </div>
@@ -95,7 +40,7 @@ const Step1 = ({ description, nextStep }) => {
           id='last-name'
           name='last-name'
           type='text'
-          onChange={ e => { dispatch(setFieldValue('lastName', e.target.value)) } }
+          onChange={ e => setFieldValue('lastName', e.target.value) }
           value={formValues.lastName}
         />
       </div>
@@ -106,7 +51,7 @@ const Step1 = ({ description, nextStep }) => {
           id='email'
           name='email'
           type='email'
-          onChange={ e => { dispatch(setFieldValue('email', e.target.value)) } }
+          onChange={ e => setFieldValue('email', e.target.value)}
           value={formValues.email}
         />
       </div>
@@ -116,7 +61,7 @@ const Step1 = ({ description, nextStep }) => {
         <input
           id='own-business-yes'
           type='radio'
-          onChange={ e => { dispatch(setFieldValue('ownBusiness', true)) } }
+          onChange={ e => setFieldValue('ownBusiness', true)}
           checked={ formValues.ownBusiness === true }
         />
         <label for='own-business-yes'>Yes</label>
@@ -124,7 +69,7 @@ const Step1 = ({ description, nextStep }) => {
         <input
           id='own-business-no'
           type='radio'
-          onChange={ e => { dispatch(setFieldValue('ownBusiness', false)) } }
+          onChange={ e => setFieldValue('ownBusiness', false) }
           checked={ formValues.ownBusiness === false }
         />
         <label for='own-business-no'>No</label>
@@ -136,7 +81,7 @@ const Step1 = ({ description, nextStep }) => {
           id='business-name'
           name='business-name'
           type='text'
-          onChange={ e => { dispatch(setFieldValue('businessName', e.target.value)) } }
+          onChange={ e => setFieldValue('businessName', e.target.value)}
           value={formValues.businessName}
         />
       </div>
@@ -147,7 +92,7 @@ const Step1 = ({ description, nextStep }) => {
           id='loan-amount'
           name='loan-amount'
           type='text'
-          onChange={ e => { dispatch(setFieldValue('loanAmount', e.target.value)) } }
+          onChange={ e => setFieldValue('loanAmount', e.target.value) }
           value={formValues.loanAmount}
         />
       </div>
@@ -155,7 +100,7 @@ const Step1 = ({ description, nextStep }) => {
       <label for='purpose-of-loan' className='required'>Purpose of Loan</label>
       <select
         id='purpose-of-loan'
-        onChange={ e => { dispatch(setFieldValue('purpose', e.target.value)) } }
+        onChange={ e => setFieldValue('purpose', e.target.value) }
       >
         {loanPurposes.map( (label, index) => {
           return (
@@ -169,7 +114,7 @@ const Step1 = ({ description, nextStep }) => {
         <input
           id='nine-months-business-yes'
           type='radio'
-          onChange={ e => { dispatch(setFieldValue('nineMonthsBusiness', true)) } }
+          onChange={ e => setFieldValue('nineMonthsBusiness', true) }
           checked={ formValues.nineMonthsBusiness === true }
         />
         <label for='nine-months-business-yes'>Yes</label>
@@ -177,7 +122,7 @@ const Step1 = ({ description, nextStep }) => {
         <input
           id='nine-months-business-no'
           type='radio'
-          onChange={ e => { dispatch(setFieldValue('nineMonthsBusiness', false)) } }
+          onChange={ e => setFieldValue('nineMonthsBusiness', false) }
           checked={ formValues.nineMonthsBusiness === false }
         />
         <label for='nine-months-business-no'>No</label>
