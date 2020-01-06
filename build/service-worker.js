@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/camino-take-home/precache-manifest.249e0fa9588448051ee6664a936c0fe3.js"
+  "/camino-take-home/precache-manifest.65767bb97d34fbae7b989b6bfef91fa7.js"
 );
 
 self.addEventListener('message', (event) => {
