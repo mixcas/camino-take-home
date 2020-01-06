@@ -50,7 +50,9 @@ const Step1 = ({
 
     setErrors(errors)
 
-    return Object.keys(errors).length ? false : true
+    return Object.keys(errors).filter( key => {
+      return errors[key]
+    }).length ? false : true
   }
 
   const onSubmit = e => {
