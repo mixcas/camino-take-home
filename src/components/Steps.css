@@ -1,0 +1,29 @@
+.steps {
+  color: #5c5c5c;
+  background: #f4f6f6;
+  font-size: 19px;
+}
+
+.steps-header {
+  border-bottom: 3px solid #ebebeb;
+  padding: 27px 0;
+}
+
+.steps-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.step-title {
+  font-size: 19px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.step-description {
+  margin: 0;
+  padding: 0;
+}

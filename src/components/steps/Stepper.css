@@ -1,0 +1,23 @@
+.stepper-container {
+  position: relative;
+  flex: auto 1 1;
+  text-align: right;
+}
+.stepper-step {
+  width: 32px;
+  height: 6px;
+  background: #808080;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.stepper-step.active-step {
+  background: #32b2db;
+}
+
+.stepper-steps {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: -15px;
+}

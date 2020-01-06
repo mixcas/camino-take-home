@@ -10,7 +10,6 @@ const helpReducer = (state = initialState, action) => {
       return {
         open: !state.open,
       }
-      break
     default:
       return state
   }

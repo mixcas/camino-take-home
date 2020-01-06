@@ -31,12 +31,12 @@ const Help = ({ open, toggleHelp }) => {
               <ContactButton
                 text='Call'
                 href='tel:8008520655'
-                icon={<img src='call.svg'/>}
+                icon={<img src='call.svg' alt='Call us'/>}
               />
               <ContactButton
                 text='Email'
                 href='mailto:info@caminofinancial.com'
-                icon={<img src='chat.svg'/>}
+                icon={<img src='chat.svg' alt='Email us'/>}
               />
             </div>
           </div>

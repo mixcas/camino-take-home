@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import Form from 'components/Form'
+import Steps from 'components/Steps'
 import Header from 'components/Header'
 import Help from 'components/Help'
 
@@ -9,7 +9,7 @@ function App() {
     <div className='App'>
       <Header/>
       <Help/>
-      <Form/>
+      <Steps/>
     </div>
   )
 }
