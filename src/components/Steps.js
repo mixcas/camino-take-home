@@ -28,6 +28,10 @@ const Steps = ({
           errors={errors}
           setErrors={setErrors}
         />
+      case 2:
+        return (
+          <p>This would be step 2 form</p>
+        )
       default:
         break
     }
