@@ -32,15 +32,6 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.input-container label,
-.input-container input {
-  width: 100%;
-}
-
-.required:after {
-  content: '*';
-}
-
 
 /* HEADER */
 .header .container {

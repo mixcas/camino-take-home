@@ -18,6 +18,7 @@ const initialState = {
     businessName: '',
     loanAmount: '',
     nineMonthsBusiness: null,
+    purpose: null,
   },
   errors: {},
 }

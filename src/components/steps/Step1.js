@@ -28,13 +28,20 @@ const Step1 = ({
   const isValid = fields => {
     const errors = {}
 
+    const isValidEmail = email => {
+      const valid = emailRegex.test(email)
+      console.log(valid)
+      debugger
+      return valid
+    }
+
     Object.keys(fields).forEach( key => {
       const value = fields[key]
 
       // Check for emptyness
       if (value === '' || value === null) {
         errors[key] = 'This field is required'
-      } else if (key === 'email' && !emailRegex.test(value) ) {
+      } else if (key === 'email' && !isValidEmail(value) ) {
         errors[key] = 'Value should be a valid email'
       } else {
         errors[key] = false
@@ -56,6 +63,7 @@ const Step1 = ({
   return (
     <>
       <p className='step-description'>{description}</p>
+      <p className='required-notice'>* required</p>
       <Input
         required
         label='First Name'
@@ -86,24 +94,29 @@ const Step1 = ({
         error={errors['email']}
       />
 
-      <div className='radio-select'>
-        <h2 className='required'>Do you own a business?</h2>
-        <input
-          id='own-business-yes'
-          type='radio'
-          onChange={ e => setFieldValue('ownBusiness', true)}
-          checked={ formValues.ownBusiness === true }
-        />
-        <label for='own-business-yes'>Yes</label>
+      <Input
+        required
+        label='Mobile Phone Number'
+        name='mobilePhoneNumber'
+        type='mobilePhoneNumber'
+        onChange={ e => setFieldValue('mobilePhoneNumber', e.target.value) }
+        value={formValues.mobilePhoneNumber}
+        error={errors['mobilePhoneNumber']}
+      />
 
-        <input
-          id='own-business-no'
-          type='radio'
-          onChange={ e => setFieldValue('ownBusiness', false) }
-          checked={ formValues.ownBusiness === false }
-        />
-        <label for='own-business-no'>No</label>
-      </div>
+      <Input
+        required
+        label='Do you own a business?'
+        name='own-bussines'
+        type='radio-select'
+        onChange={ e => setFieldValue('ownBusiness', e.target.value) }
+        value={formValues.ownBusiness}
+        error={errors['ownBusiness']}
+        options={{
+          'Yes': 'true',
+          'No': 'false',
+        }}
+      />
 
       <Input
         required
@@ -125,38 +138,33 @@ const Step1 = ({
         error={errors['loanAmount']}
       />
 
-      <label for='purpose-of-loan' className='required'>Purpose of Loan</label>
-      <select
-        id='purpose-of-loan'
+      <Input
+        required
+        label='Purpose of Loan'
+        name='purpose-of-loan'
+        type='select'
         onChange={ e => setFieldValue('purpose', e.target.value) }
-      >
-        {loanPurposes.map( (label, index) => {
-          return (
-            <option value={index} key={index}>{label}</option>
-          )
-        })}
-      </select>
+        value={formValues.purpose}
+        error={errors['purpose']}
+        options={loanPurposes}
+      />
 
-      <div className='radio-select'>
-        <h2 className='required'>Have you been in business for at least 9 months?</h2>
-        <input
-          id='nine-months-business-yes'
-          type='radio'
-          onChange={ e => setFieldValue('nineMonthsBusiness', true) }
-          checked={ formValues.nineMonthsBusiness === true }
-        />
-        <label for='nine-months-business-yes'>Yes</label>
 
-        <input
-          id='nine-months-business-no'
-          type='radio'
-          onChange={ e => setFieldValue('nineMonthsBusiness', false) }
-          checked={ formValues.nineMonthsBusiness === false }
-        />
-        <label for='nine-months-business-no'>No</label>
-      </div>
+      <Input
+        required
+        label='Have you been in business for at least 9 months??'
+        name='nine-months-business'
+        type='radio-select'
+        onChange={ e => setFieldValue('nineMonthsBusiness', e.target.value) }
+        value={formValues.nineMonthsBusiness}
+        error={errors['nineMonthsBusiness']}
+        options={{
+          'Yes': 'true',
+          'No': 'false',
+        }}
+      />
 
-      <button onClick={onSubmit}>Next</button>
+      <button className='form-button' onClick={onSubmit}>Next</button>
     </>
   )
 }

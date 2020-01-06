@@ -16,6 +16,12 @@
 
 }
 
+.step-container {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+
 .step-title {
   font-size: 19px;
   font-weight: normal;
@@ -24,6 +30,18 @@
 }
 
 .step-description {
+  font-size: 22px;
   margin: 0;
   padding: 0;
+  margin-bottom: 10px;
+}
+
+.required-notice {
+  color: #fa1d00;
+}
+
+.field-error {
+  margin: 10px 0;
+  font-size: 12px;
+  color: #fa1d00;
 }
