@@ -6,10 +6,10 @@ const Stepper = ({currentStep, totalSteps}) => {
   return (
     <div className='stepper-container'>
       Step {currentStep} of {totalSteps}
-      <div class='stepper-steps'>
+      <div className='stepper-steps'>
         {[...Array(totalSteps).keys()].map( (val, index) => {
           return (
-            <span className={`stepper-step ${currentStep === index + 1 ? 'active-step': ''}`} />
+            <span key={index} className={`stepper-step ${currentStep === index + 1 ? 'active-step': ''}`} />
           )
         })}
       </div>

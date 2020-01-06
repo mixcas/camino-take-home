@@ -13,7 +13,7 @@ const Help = ({ open, toggleHelp }) => {
 
   return (
     <div className='help dark-blue-background'>
-      <div class='container'>
+      <div className='container'>
         <button className='help-toggle' onClick={toggleHelp}>
           { open ? (
             <img src='up-chevron.svg' alt='Hide help'/>

@@ -19,7 +19,7 @@ const Input = ({
           {Object.keys(options).map( (key) => {
             const fieldValue = options[key]
             return (
-              <label for={`${name}-${fieldValue}`}>
+              <label key={`${name}-${fieldValue}`} htmlFor={`${name}-${fieldValue}`}>
                 <input
                   id={`${name}-${fieldValue}`}
                   type='radio'
@@ -38,7 +38,7 @@ const Input = ({
     case 'select':
       return (
         <div className='input-container select'>
-          <label className={ required ? 'required' : ''} for={name}>{label}</label>
+          <label className={ required ? 'required' : ''} htmlFor={name}>{label}</label>
           <select
             id={name}
             onChange={onChange}
@@ -57,7 +57,7 @@ const Input = ({
     default:
       return (
         <div className='input-container'>
-          <label className={ required ? 'required' : ''} for={name}>{label}</label>
+          <label className={ required ? 'required' : ''} htmlFor={name}>{label}</label>
           <input
             id={name}
             name={name}
