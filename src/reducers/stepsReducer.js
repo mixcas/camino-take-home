@@ -2,11 +2,8 @@ import STEPS from 'lib/steps'
 
 export const INCREASE_STEP = 'INCREASE_STEP'
 export const SET_FORM_VALUE = 'SET_FORM_VALUE'
+export const SET_ERRORS = 'SET_ERRORS'
 
-// Error Initial state
-const errorInitialState = {
-  firstName: false,
-}
 const initialState = {
   currentStep: 1,
   stepTitle: STEPS[1].title,
@@ -22,7 +19,7 @@ const initialState = {
     loanAmount: '',
     nineMonthsBusiness: null,
   },
-  error: errorInitialState,
+  errors: {},
 }
 
 const stepsReducer = (state = initialState, action) => {
@@ -43,6 +40,15 @@ const stepsReducer = (state = initialState, action) => {
           ...formValues,
           [action.field]: action.data,
         },
+      }
+
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          ...action.data,
+        }
       }
     default:
       return state

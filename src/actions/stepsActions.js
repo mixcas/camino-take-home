@@ -1,4 +1,4 @@
-import { INCREASE_STEP, SET_FORM_VALUE } from 'reducers/stepsReducer'
+import { INCREASE_STEP, SET_FORM_VALUE, SET_ERRORS } from 'reducers/stepsReducer'
 
 export const increaseStep = () => {
   return {
@@ -11,6 +11,13 @@ export const setFieldValue = (field, data) => {
   return {
     type: SET_FORM_VALUE,
     field,
+    data,
+  }
+}
+
+export const setErrors = (data) => {
+  return {
+    type: SET_ERRORS,
     data,
   }
 }

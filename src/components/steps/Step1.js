@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from 'components/fields/Input'
 
 const loanPurposes = [
   'Expansion',
@@ -14,47 +15,76 @@ const loanPurposes = [
   'Other',
 ]
 
-const Step1 = ({ description, nextStep, setFieldValue, formValues }) => {
+const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gm
+
+const Step1 = ({
+  description,
+  nextStep,
+  setFieldValue,
+  formValues,
+  setErrors,
+  errors,
+}) => {
+  const isValid = fields => {
+    const errors = {}
+
+    Object.keys(fields).forEach( key => {
+      const value = fields[key]
+
+      // Check for emptyness
+      if (value === '' || value === null) {
+        errors[key] = 'This field is required'
+      } else if (key === 'email' && !emailRegex.test(value) ) {
+        errors[key] = 'Value should be a valid email'
+      } else {
+        errors[key] = false
+      }
+
+    })
+
+    setErrors(errors)
+
+    return Object.keys(errors).length ? false : true
+  }
   const onSubmit = e => {
     e.preventDefault()
-    nextStep()
+    if(isValid(formValues)) {
+      nextStep()
+    }
   }
 
   return (
     <>
       <p className='step-description'>{description}</p>
-      <div className='input-container'>
-        <label className='required' for='first-name'>First Name</label>
-        <input
-          id='first-name'
-          name='first-name'
-          type='text'
-          onChange={ e => setFieldValue('firstName', e.target.value) }
-          value={formValues.firstName}
-        />
-      </div>
+      <Input
+        required
+        label='First Name'
+        name='first-name'
+        type='text'
+        onChange={ e => setFieldValue('firstName', e.target.value) }
+        value={formValues.firstName}
+        error={errors['firstName']}
+      />
 
-      <div className='input-container'>
-        <label className='required' for='last-name'>Last Name</label>
-        <input
-          id='last-name'
-          name='last-name'
-          type='text'
-          onChange={ e => setFieldValue('lastName', e.target.value) }
-          value={formValues.lastName}
-        />
-      </div>
+      <Input
+        required
+        label='Last Name'
+        name='last-name'
+        type='text'
+        onChange={ e => setFieldValue('lastName', e.target.value) }
+        value={formValues.lastName}
+        error={errors['lastName']}
+      />
 
-      <div className='input-container'>
-        <label className='required' for='email'>Best Contact Email</label>
-        <input
-          id='email'
-          name='email'
-          type='email'
-          onChange={ e => setFieldValue('email', e.target.value)}
-          value={formValues.email}
-        />
-      </div>
+      <Input
+        required
+        label='Email'
+        name='email'
+        type='email'
+        onChange={ e => setFieldValue('email', e.target.value) }
+        value={formValues.email}
+        error={errors['email']}
+      />
 
       <div className='radio-select'>
         <h2 className='required'>Do you own a business?</h2>
@@ -75,27 +105,25 @@ const Step1 = ({ description, nextStep, setFieldValue, formValues }) => {
         <label for='own-business-no'>No</label>
       </div>
 
-      <div className='input-container'>
-        <label className='required' for='business-name'>Business Name</label>
-        <input
-          id='business-name'
-          name='business-name'
-          type='text'
-          onChange={ e => setFieldValue('businessName', e.target.value)}
-          value={formValues.businessName}
-        />
-      </div>
+      <Input
+        required
+        label='Business Name'
+        name='business-name'
+        type='text'
+        onChange={ e => setFieldValue('businessName', e.target.value) }
+        value={formValues.businessName}
+        error={errors['businessName']}
+      />
 
-      <div className='input-container'>
-        <label className='required' for='loan-amount'>Desired Loan Amount</label>
-        <input
-          id='loan-amount'
-          name='loan-amount'
-          type='text'
-          onChange={ e => setFieldValue('loanAmount', e.target.value) }
-          value={formValues.loanAmount}
-        />
-      </div>
+      <Input
+        required
+        label='Desired Loan Amount'
+        name='loan-amount'
+        type='text'
+        onChange={ e => setFieldValue('loanAmount', e.target.value) }
+        value={formValues.loanAmount}
+        error={errors['loanAmount']}
+      />
 
       <label for='purpose-of-loan' className='required'>Purpose of Loan</label>
       <select
