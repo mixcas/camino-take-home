@@ -41,7 +41,7 @@ const Steps = ({
           <Stepper currentStep={currentStep} totalSteps={totalSteps}/>
         </div>
       </header>
-      <div className='step-container'>
+      <div className='container step-container'>
         {renderStep()}
       </div>
     </div>

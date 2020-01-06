@@ -7,6 +7,7 @@
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -39,6 +40,7 @@ body {
   padding-bottom: 66px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .language-button {
@@ -55,4 +57,18 @@ body {
 
 .logo {
   width: 142px;
+}
+
+@media only screen and (max-width: 320px) {
+  .logo {
+    width: 45%;
+  }
+
+  .language-button {
+    font-size: 10px;
+  }
+
+  .header .container {
+    padding-bottom: 30px;
+  }
 }

@@ -54,3 +54,29 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media only screen and (max-width: 320px) {
+  .help-toggle span {
+    display: none;
+  }
+
+  .help-toggle {
+    height: 29px;
+  }
+
+  .help-toggle img {
+    width: 15px;
+  }
+
+  .help-drawer-container {
+    padding: 10px 20px;
+  }
+
+  .help-text {
+    margin-top: 10px;
+  }
+
+  .contact-buttons {
+    flex-wrap: wrap;
+  }
+}

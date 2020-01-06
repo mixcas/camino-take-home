@@ -18,3 +18,10 @@
   margin-right: 12px;
   width: 26px;
 }
+
+@media only screen and (max-width: 320px) {
+  .contact-button {
+    height: 40px;
+    padding: 5px;
+  }
+}

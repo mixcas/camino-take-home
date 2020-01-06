@@ -31,7 +31,6 @@ const Step1 = ({
     const isValidEmail = email => {
       const valid = emailRegex.test(email)
       console.log(valid)
-      debugger
       return valid
     }
 
@@ -53,6 +52,7 @@ const Step1 = ({
 
     return Object.keys(errors).length ? false : true
   }
+
   const onSubmit = e => {
     e.preventDefault()
     if(isValid(formValues)) {
